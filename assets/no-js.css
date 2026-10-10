@@ -1,0 +1,34 @@
+/* Progressive fallback: leave navigation and example content usable without scripts. */
+
+[data-brief],.menu-toggle,.demo-tabs,.demo-review,.industry-label,.estimate-inputs {
+  display: none!important;
+}
+
+.nav-links {
+  display: flex;
+  position: static;
+  padding: 0;
+  border: 0;
+  flex-direction: row;
+  gap: 12px;
+  font-size: 10px;
+}
+
+.industry-result {
+  margin-top: 17px;
+}
+
+@media(max-width:400px) {
+  .nav-links {
+    gap: 8px;
+    font-size: 9px;
+  }
+
+  .logo {
+    font-size: 26px;
+  }
+
+  .logo svg {
+    width: 19px;
+  }
+}
