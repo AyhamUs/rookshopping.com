@@ -33,6 +33,12 @@ if sum(t=='h1' for t,a in page.elements)!=1:errors.append('Expected exactly one 
 if not any(t=='meta' and a.get('name')=='viewport' for t,a in page.elements):errors.append('Missing viewport')
 if not any(t=='meta' and a.get('name')=='description' for t,a in page.elements):errors.append('Missing description')
 if not any(t=='html' and a.get('lang') for t,a in page.elements):errors.append('Missing document language')
+for tag,attrs in page.elements:
+    asset=attrs.get('src','') if tag=='script' else attrs.get('href','') if tag=='link' and attrs.get('rel')=='stylesheet' else ''
+    if asset and not asset.startswith(('http:', 'https:', '//', 'data:')):
+        target=path.parent / asset
+        if not target.is_file():errors.append(f'Missing local asset: {asset}')
+        elif tag=='script':page.scripts.append(target.read_text())
 for i,script in enumerate(page.scripts):
     result=subprocess.run(['node','--check'],input=script,text=True,capture_output=True)
     if result.returncode:errors.append(f'Script {i}: {result.stderr}')
