@@ -14,13 +14,20 @@ python3 -m http.server 4173
 
 Open http://localhost:4173. No package install or build is required.
 
+## Source layout
+
+- `index.html`: page content and semantic structure
+- `assets/styles.css`: responsive design and reduced-motion styles
+- `assets/main.js`: navigation, demos, calculator, and project planner
+- `assets/no-js.css`: fallback styles loaded only without JavaScript
+
 ## Checks
 
 ```sh
 python3 scripts/check_site.py
 ```
 
-Requires Python 3 and Node.js. Checks document structure, unique IDs, internal fragments, ARIA references, basic metadata, and inline JavaScript syntax. It does not replace browser testing.
+Requires Python 3 and Node.js. Checks document structure, unique IDs, internal fragments, ARIA references, basic metadata, local asset references, and JavaScript syntax. It does not replace browser testing.
 
 Before publishing, check desktop and narrow mobile layouts, navigation, keyboard-operated demo tabs, FAQ disclosures, project planner validation, copy/download, modal dismissal and focus restoration, reduced-motion preferences, and the calculator's zero/invalid inputs.
 
